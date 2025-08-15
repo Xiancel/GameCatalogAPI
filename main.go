@@ -10,7 +10,9 @@ import (
 func main() {
 	// додавання хендлерів
 	http.HandleFunc("/list", handlers.ListHandler)
-	http.HandleFunc("/aff", handlers.AddHandler)
+	http.HandleFunc("/add", handlers.AddHandler)
+	http.HandleFunc("/item", handlers.GetItemByIdHandler)
+	http.HandleFunc("/stats", handlers.StatsHandler)
 
 	//ініціалізація сервера
 	err := http.ListenAndServe(":8080", nil)

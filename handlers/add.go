@@ -17,14 +17,20 @@ func AddHandler(w http.ResponseWriter, r *http.Request) {
 		yearStr := r.URL.Query().Get("year")
 		ratingStr := r.URL.Query().Get("rating")
 
+		if name == "" {
+			return
+		}
+		if genre == "" {
+			return
+		}
 		// перевод з string в int
 		year, err := strconv.Atoi(yearStr)
-		if err != nil {
+		if err != nil || year < 1950 || year > 2025 {
 			return
 		}
 		// перевід з string в float64
 		rating, err := strconv.ParseFloat(ratingStr, 64)
-		if err != nil {
+		if err != nil || rating < 0 || rating > 10 {
 			return
 		}
 
