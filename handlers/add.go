@@ -17,19 +17,23 @@ func AddHandler(w http.ResponseWriter, r *http.Request) {
 		yearStr := r.URL.Query().Get("year")
 		ratingStr := r.URL.Query().Get("rating")
 
+		// перевірка на пусте ім'я
 		if name == "" {
 			return
 		}
+		// перевірка на пустий жанр
 		if genre == "" {
 			return
 		}
 		// перевод з string в int
 		year, err := strconv.Atoi(yearStr)
+		// валідація року
 		if err != nil || year < 1950 || year > 2025 {
 			return
 		}
 		// перевід з string в float64
 		rating, err := strconv.ParseFloat(ratingStr, 64)
+		// валідація рейтингу
 		if err != nil || rating < 0 || rating > 10 {
 			return
 		}

@@ -6,8 +6,11 @@ import (
 	"net/http"
 )
 
+// функція/хендлер для відображення статистики котологу
 func StatsHandler(w http.ResponseWriter, r *http.Request) {
+	// перевірка на метод
 	if r.Method == "GET" {
+		// створення статистики ї відображення
 		games := module.StatsCatalog{
 			TotalGame:        len(module.CatalogList),
 			AvgRating:        avgRating(),
@@ -24,6 +27,7 @@ func StatsHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// функція для підрахунку середьного рейтингу всіх ігор
 func avgRating() float64 {
 	var rating float64
 	for _, n := range module.CatalogList {
@@ -35,6 +39,7 @@ func avgRating() float64 {
 	return avg
 }
 
+// функція для визначення самої старої гри в каталозі
 func oldest() string {
 	oldest := module.CatalogList[0].Year
 	oldestName := module.CatalogList[0].Name
@@ -48,6 +53,7 @@ func oldest() string {
 	return oldestName
 }
 
+// функція для визначення новіїшої гри в каталозі
 func newest() string {
 	newest := module.CatalogList[0].Year
 	newestName := module.CatalogList[0].Name
@@ -61,6 +67,7 @@ func newest() string {
 	return newestName
 }
 
+// функція для визначення популярного жанру в каталозі
 func popularGanre() string {
 	popularGanre := make(map[string]int)
 
