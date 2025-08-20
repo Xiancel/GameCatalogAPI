@@ -17,6 +17,7 @@ func GetItemByIdHandler(w http.ResponseWriter, r *http.Request) {
 		// перевід з string в int
 		id, err := strconv.Atoi(idStr)
 		if err != nil {
+			http.Error(w, "invalid id", http.StatusBadRequest)
 			return
 		}
 
@@ -25,6 +26,7 @@ func GetItemByIdHandler(w http.ResponseWriter, r *http.Request) {
 
 		// валідація id
 		if game.ID == 0 {
+			http.Error(w, "game not found", http.StatusNotFound)
 			return
 		}
 

@@ -19,22 +19,26 @@ func AddHandler(w http.ResponseWriter, r *http.Request) {
 
 		// перевірка на пусте ім'я
 		if name == "" {
+			http.Error(w, "enter name", http.StatusBadRequest)
 			return
 		}
 		// перевірка на пустий жанр
 		if genre == "" {
+			http.Error(w, "enter genre", http.StatusBadRequest)
 			return
 		}
 		// перевод з string в int
 		year, err := strconv.Atoi(yearStr)
 		// валідація року
 		if err != nil || year < 1950 || year > 2025 {
+			http.Error(w, "invalid year", http.StatusBadRequest)
 			return
 		}
 		// перевід з string в float64
 		rating, err := strconv.ParseFloat(ratingStr, 64)
 		// валідація рейтингу
 		if err != nil || rating < 0 || rating > 10 {
+			http.Error(w, "invalid rating", http.StatusBadRequest)
 			return
 		}
 
