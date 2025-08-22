@@ -13,6 +13,7 @@ func main() {
 	http.HandleFunc("/add", handlers.AddHandler)
 	http.HandleFunc("/item", handlers.GetItemByIdHandler)
 	http.HandleFunc("/stats", handlers.StatsHandler)
+	http.HandleFunc("/search", handlers.SearchHandler)
 
 	//ініціалізація сервера
 	err := http.ListenAndServe(":8080", nil)
