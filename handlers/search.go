@@ -9,6 +9,10 @@ import (
 
 // функція/хендлер для пошуку ігор по параметрам
 func SearchHandler(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodGet {
+		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+		return
+	}
 	// запрос параметрів у користувача
 	name := r.URL.Query().Get("name")
 	genre := r.URL.Query().Get("genre")

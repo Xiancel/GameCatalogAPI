@@ -9,22 +9,22 @@ import (
 // функція/хендлер для відображення статистики котологу
 func StatsHandler(w http.ResponseWriter, r *http.Request) {
 	// перевірка на метод
-	if r.Method == "GET" {
-		// створення статистики ї відображення
-		games := module.StatsCatalog{
-			TotalGame:        len(module.CatalogList),
-			AvgRating:        avgRating(),
-			OldestGame:       oldest(),
-			NewstGame:        newest(),
-			MostPopularGanre: popularGanre(),
-		}
-
-		jsonData, _ := json.Marshal(games)
-		w.Header().Set("Content-Type", "application/json")
-		w.Write(jsonData)
-	} else {
-		w.WriteHeader(http.StatusMethodNotAllowed)
+	if r.Method != http.MethodGet {
+		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+		return
 	}
+	// створення статистики ї відображення
+	games := module.StatsCatalog{
+		TotalGame:        len(module.CatalogList),
+		AvgRating:        avgRating(),
+		OldestGame:       oldest(),
+		NewstGame:        newest(),
+		MostPopularGanre: popularGanre(),
+	}
+
+	jsonData, _ := json.Marshal(games)
+	w.Header().Set("Content-Type", "application/json")
+	w.Write(jsonData)
 }
 
 // функція для підрахунку середьного рейтингу всіх ігор
