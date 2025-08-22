@@ -14,7 +14,7 @@ git clone https://github.com/Xiancel/GameCatalogAPI.git
 cd GameCatalogAPI
 ```
 # Приклад Використання
- [-----]()
+ [-----](ShowCase.md)
 # ⚠️ Примітка
 Для тестування веб-запитів рекомендується використовувати Insomnia, Postman або аналогічні інструменти, оскільки програма працює з HTTP-запитами (GET та POST) без графічного інтерфейсу.
 
