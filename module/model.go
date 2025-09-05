@@ -19,3 +19,9 @@ type StatsCatalog struct {
 
 // слайс для зберегання всіх ігор в каталозі
 var CatalogList []GameCatalog
+
+type HandlerTest struct {
+	Url          string
+	ExpectCode   int
+	Expectlenght int
+}
